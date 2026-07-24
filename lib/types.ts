@@ -14,3 +14,9 @@ export interface Verse {
   number: string;
   content: string;
 }
+
+// Storage interfaces
+export interface LastViewedChapter {
+  book: string;
+  chapter: string;
+}

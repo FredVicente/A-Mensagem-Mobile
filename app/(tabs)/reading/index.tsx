@@ -16,7 +16,7 @@ export default function ReadingScreen() {
       {BibleBooks.oldTestament.map((book) => (
         <ThemedPressable
           key={book.normalizedTitle}
-          onPress={() => router.push(`/reading/${book.normalizedTitle}`)}
+          onPress={() => router.replace(`/reading/${book.normalizedTitle}`)}
           style={styles.button}
         >
           <ThemedText style={styles.buttonText}>{book.title}</ThemedText>
@@ -28,7 +28,7 @@ export default function ReadingScreen() {
       {BibleBooks.newTestament.map((book) => (
         <ThemedPressable
           key={book.normalizedTitle}
-          onPress={() => router.push(`/reading/${book.normalizedTitle}`)}
+          onPress={() => router.replace(`/reading/${book.normalizedTitle}`)}
           style={styles.button}
         >
           <ThemedText style={styles.buttonText}>{book.title}</ThemedText>

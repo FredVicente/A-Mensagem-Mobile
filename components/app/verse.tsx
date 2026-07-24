@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-start",
     gap: 4,
+    textAlign: "justify",
   },
   number: {
     fontSize: 10,

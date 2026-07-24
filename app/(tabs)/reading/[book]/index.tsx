@@ -38,7 +38,7 @@ export default function BookScreen() {
           <ThemedPressable
             key={chapter}
             onPress={() =>
-              router.push(`/reading/${bookData.normalizedTitle}/${chapter}`)
+              router.replace(`/reading/${bookData.normalizedTitle}/${chapter}`)
             }
             style={styles.button}
           >

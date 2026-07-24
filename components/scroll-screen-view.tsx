@@ -1,14 +1,27 @@
 import { ScrollThemedView } from "@/components/scroll-themed-view";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import type { PropsWithChildren } from "react";
-import { StyleSheet } from "react-native";
+import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 
-export default function ScrollScreenView({ children }: PropsWithChildren) {
+type ScrollScreenViewProps = PropsWithChildren<{
+  style?: StyleProp<ViewStyle>;
+  contentContainerStyle?: StyleProp<ViewStyle>;
+}>;
+
+export default function ScrollScreenView({
+  children,
+  style,
+  contentContainerStyle,
+}: ScrollScreenViewProps) {
   const tabBarHeight = useBottomTabBarHeight();
+
   return (
     <ScrollThemedView
-      style={styles.container}
-      contentContainerStyle={{ paddingBottom: 32 + tabBarHeight }}
+      style={[styles.container, style]}
+      contentContainerStyle={[
+        { paddingBottom: 32 + tabBarHeight },
+        contentContainerStyle,
+      ]}
     >
       {children}
     </ScrollThemedView>

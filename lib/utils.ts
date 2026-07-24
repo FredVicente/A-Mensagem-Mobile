@@ -25,3 +25,51 @@ export function normalizeText(bookName: string) {
 export function findBookByNormalizedTitle(normalizedTitle: string) {
   return AllBibleBooks.find((book) => book.normalizedTitle === normalizedTitle);
 }
+
+export function getNextAndPreviousChapter(book: string, chapter: number) {
+  const bookIndex = AllBibleBooks.findIndex((b) => b.normalizedTitle === book);
+
+  if (bookIndex === -1) {
+    throw new Error(`Book "${book}" not found.`);
+  }
+
+  const currentBook = AllBibleBooks[bookIndex];
+
+  let previous: { book: string; chapter: number };
+  let next: { book: string; chapter: number };
+
+  // Previous
+  if (chapter > 1) {
+    previous = {
+      book: currentBook.normalizedTitle,
+      chapter: chapter - 1,
+    };
+  } else {
+    const previousBook =
+      AllBibleBooks[
+        (bookIndex - 1 + AllBibleBooks.length) % AllBibleBooks.length
+      ];
+
+    previous = {
+      book: previousBook.normalizedTitle,
+      chapter: previousBook.chaptersCount,
+    };
+  }
+
+  // Next
+  if (chapter < currentBook.chaptersCount) {
+    next = {
+      book: currentBook.normalizedTitle,
+      chapter: chapter + 1,
+    };
+  } else {
+    const nextBook = AllBibleBooks[(bookIndex + 1) % AllBibleBooks.length];
+
+    next = {
+      book: nextBook.normalizedTitle,
+      chapter: 1,
+    };
+  }
+
+  return { previous, next };
+}

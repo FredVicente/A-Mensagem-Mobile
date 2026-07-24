@@ -9,7 +9,7 @@ export default function ScreenView({ children }: PropsWithChildren) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 32,
+    padding: 24,
     paddingTop: 64,
     gap: 8,
     minHeight: "100%",
