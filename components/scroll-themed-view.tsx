@@ -13,10 +13,7 @@ export function ScrollThemedView({
   darkColor,
   ...otherProps
 }: ScrollThemedViewProps) {
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background",
-  );
+  const backgroundColor = useThemeColor("background");
 
   return <ScrollView style={[{ backgroundColor }, style]} {...otherProps} />;
 }

@@ -1,7 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useContext, useEffect, useState } from "react";
 
-type Theme = "light" | "dark";
+import { Themes } from "@/constants/theme";
+
+type Theme = keyof typeof Themes;
 
 type ThemeContextType = {
   theme: Theme;
@@ -20,8 +22,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     async function loadTheme() {
       const savedTheme = await AsyncStorage.getItem("theme");
 
-      if (savedTheme === "dark" || savedTheme === "light") {
-        setThemeState(savedTheme);
+      if (savedTheme && savedTheme in Themes) {
+        setThemeState(savedTheme as Theme);
       }
     }
 

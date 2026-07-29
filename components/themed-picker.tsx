@@ -18,7 +18,7 @@ export function ThemedPicker<T>({
   onValueChange,
   ...otherProps
 }: ThemedPickerProps<T>) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const color = useThemeColor("text");
 
   return (
     <Picker<T>

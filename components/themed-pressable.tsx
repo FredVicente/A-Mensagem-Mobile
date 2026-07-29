@@ -19,10 +19,7 @@ export function ThemedPressable({
   darkColor = "#333",
   ...otherProps
 }: ThemedPressableProps) {
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "tint",
-  );
+  const backgroundColor = useThemeColor("tint");
 
   return (
     <Pressable
