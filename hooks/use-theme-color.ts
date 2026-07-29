@@ -1,8 +1,10 @@
-import { Themes } from "@/constants/theme";
+import { Theme, Themes } from "@/constants/theme";
 import { useAppTheme } from "@/contexts/ThemeContext";
 
-export function useThemeColor(colorName: keyof typeof Themes.light) {
+type ThemeKey = keyof Theme;
+
+export function useThemeColor<K extends ThemeKey>(key: K): Theme[K] {
   const { theme } = useAppTheme();
 
-  return Themes[theme][colorName];
+  return Themes[theme][key];
 }

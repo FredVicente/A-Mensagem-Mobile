@@ -1,4 +1,5 @@
 import { AllBibleBooks } from "@/data/bible-books";
+import { useThemeColor } from "@/hooks/use-theme-color";
 import { getNextAndPreviousChapter } from "@/lib/utils";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
@@ -13,10 +14,10 @@ type VerseChangerProps = {
 
 export function VerseChanger({ book, chapter }: VerseChangerProps) {
   const router = useRouter();
-
   const bookData = AllBibleBooks.find((b) => b.normalizedTitle === book);
-
   const { previous, next } = getNextAndPreviousChapter(book, Number(chapter));
+
+  const color = useThemeColor("tintText");
 
   return (
     <ThemedView style={styles.container}>
@@ -26,13 +27,13 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
           router.replace(`/reading/${previous.book}/${previous.chapter}`)
         }
       >
-        <ThemedText>{"<"}</ThemedText>
+        <ThemedText style={{ color }}>{"<"}</ThemedText>
       </ThemedPressable>
       <ThemedPressable
         style={styles.chapter}
         onPress={() => router.replace(`/reading`)}
       >
-        <ThemedText>
+        <ThemedText style={{ color }}>
           {bookData?.title} {chapter}
         </ThemedText>
       </ThemedPressable>
@@ -40,7 +41,7 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
         style={styles.arrow}
         onPress={() => router.replace(`/reading/${next.book}/${next.chapter}`)}
       >
-        <ThemedText>{">"}</ThemedText>
+        <ThemedText style={{ color }}>{">"}</ThemedText>
       </ThemedPressable>
     </ThemedView>
   );
@@ -49,8 +50,9 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    bottom: 32,
-    borderRadius: 8,
+    bottom: 52,
+    borderRadius: 32,
+    overflow: "hidden",
   },
   arrow: {
     flex: 1,

@@ -8,15 +8,11 @@ import {
 import { useThemeColor } from "@/hooks/use-theme-color";
 
 export type ThemedPressableProps = PressableProps & {
-  lightColor?: string;
-  darkColor?: string;
   style?: StyleProp<ViewStyle>;
 };
 
 export function ThemedPressable({
   style,
-  lightColor = "#eee",
-  darkColor = "#333",
   ...otherProps
 }: ThemedPressableProps) {
   const backgroundColor = useThemeColor("tint");

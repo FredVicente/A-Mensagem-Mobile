@@ -2,6 +2,7 @@ import ScreenView from "@/components/screen-view";
 import { ThemedPicker } from "@/components/themed-picker";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { Themes } from "@/constants/theme";
 import { useAppTheme } from "@/contexts/ThemeContext";
 import { Picker } from "@react-native-picker/picker";
 import { StyleSheet } from "react-native";
@@ -20,8 +21,9 @@ export default function HomeScreen() {
           onValueChange={(itemValue) => setTheme(itemValue)}
           style={{ width: 120 }}
         >
-          <Picker.Item label="Claro" value="light" />
-          <Picker.Item label="Escuro" value="dark" />
+          {Object.entries(Themes).map(([key, theme]) => (
+            <Picker.Item key={key} label={theme.label} value={key} />
+          ))}
         </ThemedPicker>
       </ThemedView>
     </ScreenView>

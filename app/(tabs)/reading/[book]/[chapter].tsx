@@ -55,5 +55,6 @@ const styles = StyleSheet.create({
   textContainer: {
     gap: 8,
     padding: 6,
+    paddingBottom: 32,
   },
 });
