@@ -17,12 +17,26 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
   const bookData = AllBibleBooks.find((b) => b.normalizedTitle === book);
   const { previous, next } = getNextAndPreviousChapter(book, Number(chapter));
 
-  const color = useThemeColor("tintText");
+  const color = useThemeColor("tint");
+  const shadow = useThemeColor("shadow");
+  const background = useThemeColor("background");
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView
+      style={[
+        styles.container,
+        {
+          boxShadow: `2px 2px 10px ${shadow}`,
+        },
+      ]}
+    >
       <ThemedPressable
-        style={styles.arrow}
+        style={[
+          styles.arrow,
+          {
+            backgroundColor: background,
+          },
+        ]}
         onPress={() =>
           router.replace(`/reading/${previous.book}/${previous.chapter}`)
         }
@@ -30,7 +44,12 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
         <ThemedText style={{ color }}>{"<"}</ThemedText>
       </ThemedPressable>
       <ThemedPressable
-        style={styles.chapter}
+        style={[
+          styles.chapter,
+          {
+            backgroundColor: background,
+          },
+        ]}
         onPress={() => router.replace(`/reading`)}
       >
         <ThemedText style={{ color }}>
@@ -38,7 +57,12 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
         </ThemedText>
       </ThemedPressable>
       <ThemedPressable
-        style={styles.arrow}
+        style={[
+          styles.arrow,
+          {
+            backgroundColor: background,
+          },
+        ]}
         onPress={() => router.replace(`/reading/${next.book}/${next.chapter}`)}
       >
         <ThemedText style={{ color }}>{">"}</ThemedText>
