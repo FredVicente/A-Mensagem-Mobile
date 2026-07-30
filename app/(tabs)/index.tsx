@@ -4,7 +4,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { useFontFamily } from "@/hooks/use-font";
 import { useLastViewedChapter } from "@/hooks/use-last-viewed-chapter";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useTheme } from "@/hooks/use-theme";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
@@ -12,7 +12,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const lastViewedChapter = useLastViewedChapter();
 
-  const buttonTextColor = useThemeColor("tintText");
+  const buttonTextColor = useTheme("tintText");
 
   const fontFamily = useFontFamily();
 

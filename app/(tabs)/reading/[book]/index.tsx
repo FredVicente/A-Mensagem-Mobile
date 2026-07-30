@@ -4,14 +4,14 @@ import { ThemedPressable } from "@/components/themed-pressable";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { AllBibleBooks } from "@/data/bible-books";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useTheme } from "@/hooks/use-theme";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function BookScreen() {
   const { book } = useLocalSearchParams();
   const router = useRouter();
-  const color = useThemeColor("tintText");
+  const color = useTheme("tintText");
 
   const bookData = AllBibleBooks.find((b) => b.normalizedTitle === book);
 

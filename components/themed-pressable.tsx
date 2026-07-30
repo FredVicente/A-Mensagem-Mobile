@@ -5,7 +5,7 @@ import {
   type ViewStyle,
 } from "react-native";
 
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useTheme } from "@/hooks/use-theme";
 
 export type ThemedPressableProps = PressableProps & {
   style?: StyleProp<ViewStyle>;
@@ -15,7 +15,7 @@ export function ThemedPressable({
   style,
   ...otherProps
 }: ThemedPressableProps) {
-  const backgroundColor = useThemeColor("tint");
+  const backgroundColor = useTheme("tint");
 
   return (
     <Pressable

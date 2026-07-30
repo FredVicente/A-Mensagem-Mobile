@@ -1,4 +1,4 @@
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useTheme } from "@/hooks/use-theme";
 import Svg, { Path } from "react-native-svg";
 
 const sizeMult = 0.65;
@@ -26,8 +26,8 @@ const lampBodySL = {
 };
 
 export function LampArt() {
-  const hue = useThemeColor("hue");
-  const mode = useThemeColor("mode") as "light" | "dark";
+  const hue = useTheme("hue");
+  const mode = useTheme("mode") as "light" | "dark";
   const param = lampBodySL[mode];
 
   return (

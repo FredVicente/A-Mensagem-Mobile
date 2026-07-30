@@ -1,4 +1,4 @@
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useTheme } from "@/hooks/use-theme";
 import { Picker, type PickerProps } from "@react-native-picker/picker";
 
 export type ThemedPickerProps<T> = Omit<
@@ -18,7 +18,7 @@ export function ThemedPicker<T>({
   onValueChange,
   ...otherProps
 }: ThemedPickerProps<T>) {
-  const color = useThemeColor("text");
+  const color = useTheme("text");
 
   return (
     <Picker<T>

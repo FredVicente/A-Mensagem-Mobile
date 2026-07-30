@@ -1,5 +1,5 @@
 import { AllBibleBooks } from "@/data/bible-books";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useTheme } from "@/hooks/use-theme";
 import { getNextAndPreviousChapter } from "@/lib/utils";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
@@ -17,9 +17,9 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
   const bookData = AllBibleBooks.find((b) => b.normalizedTitle === book);
   const { previous, next } = getNextAndPreviousChapter(book, Number(chapter));
 
-  const color = useThemeColor("tint");
-  const shadow = useThemeColor("shadow");
-  const background = useThemeColor("background");
+  const color = useTheme("tint");
+  const shadow = useTheme("shadow");
+  const background = useTheme("background");
 
   return (
     <ThemedView
