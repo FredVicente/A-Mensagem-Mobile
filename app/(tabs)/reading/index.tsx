@@ -22,7 +22,15 @@ export default function ReadingScreen() {
           <ThemedText style={styles.buttonText}>{book.title}</ThemedText>
         </ThemedPressable>
       ))}
-      <ThemedText type="title" style={styles.title}>
+      <ThemedText
+        type="title"
+        style={[
+          styles.title,
+          {
+            marginTop: 16,
+          },
+        ]}
+      >
         Novo Testamento
       </ThemedText>
       {BibleBooks.newTestament.map((book) => (

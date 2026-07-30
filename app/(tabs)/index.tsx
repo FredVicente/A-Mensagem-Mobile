@@ -2,6 +2,7 @@ import { LampArt } from "@/components/art/lampArt";
 import { ThemedPressable } from "@/components/themed-pressable";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { useFontFamily } from "@/hooks/use-font";
 import { useLastViewedChapter } from "@/hooks/use-last-viewed-chapter";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useRouter } from "expo-router";
@@ -13,15 +14,33 @@ export default function HomeScreen() {
 
   const buttonTextColor = useThemeColor("tintText");
 
+  const fontFamily = useFontFamily();
+
   return (
     <ThemedView style={styles.container}>
       <LampArt />
 
       <ThemedView style={styles.verse}>
-        <ThemedText style={styles.verseText}>
+        <ThemedText
+          style={[
+            styles.verseText,
+            {
+              fontFamily,
+            },
+          ]}
+        >
           Iluminado por tuas palavras, consigo enxergar o caminho
         </ThemedText>
-        <ThemedText style={styles.verseReference}>Salmos 119:105</ThemedText>
+        <ThemedText
+          style={[
+            styles.verseReference,
+            {
+              fontFamily,
+            },
+          ]}
+        >
+          Salmos 119:105
+        </ThemedText>
       </ThemedView>
 
       <ThemedPressable
@@ -62,6 +81,7 @@ const styles = StyleSheet.create({
   verseText: {
     textAlign: "center",
     fontSize: 24,
+    lineHeight: 30,
   },
   verseReference: {
     textAlign: "center",
