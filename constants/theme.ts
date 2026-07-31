@@ -17,6 +17,7 @@ export type Theme = {
   tabIconDefault: string;
   tabIconSelected: string;
   shadow: string;
+  surface: string;
 };
 
 export const Themes = {
@@ -25,6 +26,7 @@ export const Themes = {
     mode: "light",
     hue: 5,
     background: "#faf8f4",
+    surface: "#ffffff",
     shadow: "#d9d4cc",
     text: "#2f2f2f",
     tint: "#9d0208",
@@ -39,6 +41,7 @@ export const Themes = {
     mode: "dark",
     hue: 0,
     background: "#18181b",
+    surface: "#242428",
     shadow: "#09090b",
     text: "#e8e8e5",
     tint: "#d9484e",
@@ -53,6 +56,7 @@ export const Themes = {
     mode: "light",
     hue: 205,
     background: "#eaf4fb",
+    surface: "#f6fbff",
     shadow: "#cfdfe9",
     text: "#1c5e8c",
     tint: "#2b83c6",
@@ -67,6 +71,7 @@ export const Themes = {
     mode: "light",
     hue: 137,
     background: "#e7efe6",
+    surface: "#f3f8f2",
     shadow: "#cad8c8",
     text: "#295b38",
     tint: "#4b8f5d",
@@ -81,6 +86,7 @@ export const Themes = {
     mode: "light",
     hue: 331,
     background: "#fdf0fa",
+    surface: "#fff8fd",
     shadow: "#e6d7e1",
     text: "#ce2780",
     tint: "#e44b9d",
@@ -95,6 +101,7 @@ export const Themes = {
     mode: "light",
     hue: 265,
     background: "#f3eefc",
+    surface: "#faf8ff",
     shadow: "#dcd5ea",
     text: "#6a43a0",
     tint: "#8b5ed1",
@@ -109,6 +116,7 @@ export const Themes = {
     mode: "dark",
     hue: 214,
     background: "#151d2b",
+    surface: "#202a3d",
     shadow: "#0c111a",
     text: "#dce8f5",
     tint: "#7cb4ff",
@@ -123,6 +131,7 @@ export const Themes = {
     mode: "dark",
     hue: 138,
     background: "#131915",
+    surface: "#1d2520",
     shadow: "#0b100c",
     text: "#bfd9b4",
     tint: "#73c98b",
@@ -137,6 +146,7 @@ export const Themes = {
     mode: "light",
     hue: 31,
     background: "#f2e7d3",
+    surface: "#faf3e7",
     shadow: "#d8ccb6",
     text: "#4b3b2a",
     tint: "#a06f3b",

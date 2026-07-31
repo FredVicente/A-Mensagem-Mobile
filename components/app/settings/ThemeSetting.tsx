@@ -16,7 +16,7 @@ export function ThemeSetting({ visible, onClose }: Props) {
   const { theme, setTheme } = useAppTheme();
 
   const fontFamily = useFontFamily();
-  const mode = useTheme("mode");
+  const surface = useTheme("surface");
 
   return (
     <Modal
@@ -30,7 +30,7 @@ export function ThemeSetting({ visible, onClose }: Props) {
           style={[
             styles.sheet,
             {
-              backgroundColor: mode === "dark" ? "#242428" : "#ffffff",
+              backgroundColor: surface,
             },
           ]}
           onPress={(e) => e.stopPropagation()}

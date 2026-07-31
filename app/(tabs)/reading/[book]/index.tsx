@@ -5,13 +5,15 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { AllBibleBooks } from "@/data/bible-books";
 import { useTheme } from "@/hooks/use-theme";
+import { MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 export default function BookScreen() {
   const { book } = useLocalSearchParams();
   const router = useRouter();
   const color = useTheme("tintText");
+  const iconColor = useTheme("icon");
 
   const bookData = AllBibleBooks.find((b) => b.normalizedTitle === book);
 
@@ -32,6 +34,12 @@ export default function BookScreen() {
 
   return (
     <ScrollScreenView>
+      <Pressable
+        style={styles.backButton}
+        onPress={() => router.replace("/reading")}
+      >
+        <MaterialIcons name="chevron-left" size={32} color={iconColor} />
+      </Pressable>
       <ThemedText type="title" style={styles.title}>
         {bookData.title}
       </ThemedText>
@@ -55,8 +63,13 @@ export default function BookScreen() {
 }
 
 const styles = StyleSheet.create({
+  backButton: {
+    backgroundColor: "tranparent",
+    marginBottom: 8,
+    left: -16,
+  },
   title: {
-    marginBottom: 16,
+    marginVertical: 16,
   },
   list: {
     flexDirection: "row",

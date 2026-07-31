@@ -14,12 +14,12 @@ type Props = {
 export function FontSetting({ visible, onClose }: Props) {
   const { font, setFont } = useAppFont();
 
-  const mode = useTheme("mode");
   const background = useTheme("background");
   const text = useTheme("text");
   const tint = useTheme("tint");
   const tintText = useTheme("tintText");
   const shadow = useTheme("shadow");
+  const surface = useTheme("surface");
 
   const selectedFont = ReadingFonts[font];
 
@@ -35,7 +35,7 @@ export function FontSetting({ visible, onClose }: Props) {
           style={[
             styles.sheet,
             {
-              backgroundColor: mode === "dark" ? "#242428" : "#ffffff",
+              backgroundColor: surface,
             },
           ]}
           onPress={(e) => e.stopPropagation()}

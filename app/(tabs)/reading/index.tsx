@@ -1,27 +1,40 @@
 import ScrollScreenView from "@/components/scroll-screen-view";
 import { ThemedPressable } from "@/components/themed-pressable";
 import { ThemedText } from "@/components/themed-text";
+import { ThemedTextInput } from "@/components/themed-text-input";
 import { BibleBooks } from "@/data/bible-books";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import { StyleSheet } from "react-native";
 
 export default function ReadingScreen() {
   const router = useRouter();
+  const [search, setSearch] = useState("");
 
   return (
     <ScrollScreenView>
+      <ThemedTextInput
+        value={search}
+        onChangeText={setSearch}
+        placeholder="Pesquisar livro"
+        style={styles.input}
+      />
       <ThemedText type="title" style={styles.title}>
         Antigo Testamento
       </ThemedText>
-      {BibleBooks.oldTestament.map((book) => (
-        <ThemedPressable
-          key={book.normalizedTitle}
-          onPress={() => router.replace(`/reading/${book.normalizedTitle}`)}
-          style={styles.button}
-        >
-          <ThemedText style={styles.buttonText}>{book.title}</ThemedText>
-        </ThemedPressable>
-      ))}
+      {BibleBooks.oldTestament
+        .filter((b) =>
+          b.normalizedTitle.startsWith(search.trim().toLocaleLowerCase()),
+        )
+        .map((book) => (
+          <ThemedPressable
+            key={book.normalizedTitle}
+            onPress={() => router.replace(`/reading/${book.normalizedTitle}`)}
+            style={styles.button}
+          >
+            <ThemedText style={styles.buttonText}>{book.title}</ThemedText>
+          </ThemedPressable>
+        ))}
       <ThemedText
         type="title"
         style={[
@@ -33,20 +46,27 @@ export default function ReadingScreen() {
       >
         Novo Testamento
       </ThemedText>
-      {BibleBooks.newTestament.map((book) => (
-        <ThemedPressable
-          key={book.normalizedTitle}
-          onPress={() => router.replace(`/reading/${book.normalizedTitle}`)}
-          style={styles.button}
-        >
-          <ThemedText style={styles.buttonText}>{book.title}</ThemedText>
-        </ThemedPressable>
-      ))}
+      {BibleBooks.newTestament
+        .filter((b) =>
+          b.normalizedTitle.startsWith(search.trim().toLocaleLowerCase()),
+        )
+        .map((book) => (
+          <ThemedPressable
+            key={book.normalizedTitle}
+            onPress={() => router.replace(`/reading/${book.normalizedTitle}`)}
+            style={styles.button}
+          >
+            <ThemedText style={styles.buttonText}>{book.title}</ThemedText>
+          </ThemedPressable>
+        ))}
     </ScrollScreenView>
   );
 }
 
 const styles = StyleSheet.create({
+  input: {
+    marginBottom: 12,
+  },
   title: {
     marginBottom: 12,
   },
