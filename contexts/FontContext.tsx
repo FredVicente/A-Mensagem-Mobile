@@ -1,13 +1,6 @@
+import { ReadingFont, ReadingFonts } from "@/constants/fonts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useContext, useEffect, useState } from "react";
-
-export const ReadingFonts = {
-  system: undefined,
-  literata: "Literata_400Regular",
-  lora: "Lora_400Regular",
-} as const;
-
-export type ReadingFont = keyof typeof ReadingFonts;
 
 type FontContextType = {
   font: ReadingFont;

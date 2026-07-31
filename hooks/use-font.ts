@@ -1,7 +1,8 @@
-import { ReadingFonts, useAppFont } from "@/contexts/FontContext";
+import { ReadingFonts } from "@/constants/fonts";
+import { useAppFont } from "@/contexts/FontContext";
 
-export function useFontFamily() {
+export function useFontFamily(w: "regular" | "bold" = "regular") {
   const { font } = useAppFont();
 
-  return ReadingFonts[font];
+  return ReadingFonts[font][w];
 }

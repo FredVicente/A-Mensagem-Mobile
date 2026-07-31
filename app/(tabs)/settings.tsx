@@ -1,47 +1,82 @@
+import { FontSetting } from "@/components/app/settings/FontSetting";
+import { ThemeSetting } from "@/components/app/settings/ThemeSetting";
 import ScreenView from "@/components/screen-view";
-import { ThemedPicker } from "@/components/themed-picker";
+import { ThemedPressable } from "@/components/themed-pressable";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { ReadingFonts } from "@/constants/fonts";
 import { Themes } from "@/constants/theme";
 import { useAppFont } from "@/contexts/FontContext";
 import { useAppTheme } from "@/contexts/ThemeContext";
-import { Picker } from "@react-native-picker/picker";
+import { useTheme } from "@/hooks/use-theme";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useState } from "react";
 import { StyleSheet } from "react-native";
 
-export default function HomeScreen() {
-  const { theme, setTheme } = useAppTheme();
-  const { font, setFont } = useAppFont();
+export default function SettingsScreen() {
+  const { theme } = useAppTheme();
+  const { font } = useAppFont();
+
+  const [themeModalVisible, setThemeModalVisible] = useState(false);
+  const [fontModalVisible, setFontModalVisible] = useState(false);
+
+  const shadow = useTheme("shadow");
+  const iconColor = useTheme("icon");
+
   return (
     <ScreenView>
       <ThemedText type="title" style={styles.title}>
         Configurações
       </ThemedText>
+
       {/* Theme config */}
-      <ThemedView style={styles.settingContainer}>
-        <ThemedText>Tema</ThemedText>
-        <ThemedPicker
-          selectedValue={theme}
-          onValueChange={(itemValue) => setTheme(itemValue)}
-          style={{ width: 120 }}
+      <ThemedView
+        style={[
+          styles.settingContainer,
+          {
+            borderBottomColor: shadow,
+          },
+        ]}
+      >
+        <ThemedText style={styles.configTitle}>Tema</ThemedText>
+
+        <ThemedPressable
+          onPress={() => setThemeModalVisible(true)}
+          style={styles.configButton}
         >
-          {Object.entries(Themes).map(([key, theme]) => (
-            <Picker.Item key={key} label={theme.label} value={key} />
-          ))}
-        </ThemedPicker>
+          <ThemedText>{Themes[theme].label}</ThemedText>
+          <MaterialIcons name="chevron-right" size={22} color={iconColor} />
+        </ThemedPressable>
       </ThemedView>
+
       {/* Font config */}
-      <ThemedView style={styles.settingContainer}>
-        <ThemedText>Tema</ThemedText>
-        <ThemedPicker
-          selectedValue={font}
-          onValueChange={(itemValue) => setFont(itemValue)}
-          style={{ width: 120 }}
+      <ThemedView
+        style={[
+          styles.settingContainer,
+          {
+            borderBottomColor: shadow,
+          },
+        ]}
+      >
+        <ThemedText style={styles.configTitle}>Fonte</ThemedText>
+
+        <ThemedPressable
+          onPress={() => setFontModalVisible(true)}
+          style={styles.configButton}
         >
-          <Picker.Item key="system" label="Sistema" value="system" />
-          <Picker.Item key="literata" label="Literata" value="literata" />
-          <Picker.Item key="lora" label="Lora" value="lora" />
-        </ThemedPicker>
+          <ThemedText>{ReadingFonts[font].label}</ThemedText>
+          <MaterialIcons name="chevron-right" size={22} color={iconColor} />
+        </ThemedPressable>
       </ThemedView>
+
+      <ThemeSetting
+        visible={themeModalVisible}
+        onClose={() => setThemeModalVisible(false)}
+      />
+      <FontSetting
+        visible={fontModalVisible}
+        onClose={() => setFontModalVisible(false)}
+      />
     </ScreenView>
   );
 }
@@ -53,6 +88,17 @@ const styles = StyleSheet.create({
   settingContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    paddingVertical: 12,
+
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  configTitle: {
+    flex: 1,
+  },
+  configButton: {
+    backgroundColor: "transparent",
+    textAlign: "left",
+    flex: 1,
+    flexDirection: "row",
   },
 });
