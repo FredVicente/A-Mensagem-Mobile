@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { ThemedView } from "@/components/themed-view";
+import { useEffect, useState } from "react";
+import { ViewStyle } from "react-native";
 import BibleText from "./BibleText";
 import BooksList from "./BooksList";
 import { ChaptersList } from "./ChaptersList";
@@ -6,34 +8,45 @@ import { ChaptersList } from "./ChaptersList";
 type Props = {
   initialBook?: string;
   initialChapter?: number;
+  style?: ViewStyle;
+  setLastViewedChapter: (book: string, chapter: number) => void;
 };
 
-export function ReadingFlow({ initialBook, initialChapter }: Props) {
+export function ReadingFlow({
+  initialBook,
+  initialChapter,
+  style,
+  setLastViewedChapter,
+}: Props) {
   const [book, setBook] = useState<string | null>(initialBook ?? null);
   const [chapter, setChapter] = useState<number | null>(initialChapter ?? null);
 
-  if (book == null) {
-    return <BooksList onBookSelect={setBook} />;
-  }
-
-  if (chapter == null) {
-    return (
-      <ChaptersList
-        book={book}
-        onBack={() => setBook(null)}
-        onChapterSelect={setChapter}
-      />
-    );
-  }
+  useEffect(() => {
+    if (book && chapter) {
+      setLastViewedChapter(book, chapter);
+    }
+  }, [chapter]);
 
   return (
-    <BibleText
-      book={book}
-      chapter={chapter}
-      onNavigate={(book, chapter) => {
-        setBook(book);
-        setChapter(chapter);
-      }}
-    />
+    <ThemedView style={[style, { flex: 1 }]}>
+      {book == null ? (
+        <BooksList onBookSelect={setBook} />
+      ) : chapter == null ? (
+        <ChaptersList
+          book={book}
+          onBack={() => setBook(null)}
+          onChapterSelect={setChapter}
+        />
+      ) : (
+        <BibleText
+          book={book}
+          chapter={chapter}
+          onNavigate={(book, chapter) => {
+            setBook(book);
+            setChapter(chapter);
+          }}
+        />
+      )}
+    </ThemedView>
   );
 }

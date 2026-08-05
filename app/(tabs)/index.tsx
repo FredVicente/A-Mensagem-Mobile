@@ -3,14 +3,12 @@ import { ThemedPressable } from "@/components/themed-pressable";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { useFontFamily } from "@/hooks/use-font";
-import { useLastViewedChapter } from "@/hooks/use-last-viewed-chapter";
 import { useTheme } from "@/hooks/use-theme";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
-  const lastViewedChapter = useLastViewedChapter();
 
   const buttonTextColor = useTheme("tintText");
 
@@ -45,11 +43,7 @@ export default function HomeScreen() {
 
       <ThemedPressable
         onPress={() => {
-          if (lastViewedChapter)
-            router.push(
-              `/reading/${lastViewedChapter.book}/${lastViewedChapter.chapter}`,
-            );
-          else router.push("/reading");
+          router.push("/reading");
         }}
         style={styles.button}
       >

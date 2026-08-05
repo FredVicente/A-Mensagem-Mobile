@@ -16,7 +16,7 @@ export default function BibleText({ book, chapter, onNavigate }: Props) {
   const text = BibleData[book][chapter];
 
   return (
-    <ThemedView>
+    <ThemedView style={styles.container}>
       <ScrollThemedView style={styles.textContainer}>
         <ThemedText type="title" style={styles.title}>
           Capítulo {chapter}
@@ -35,6 +35,9 @@ export default function BibleText({ book, chapter, onNavigate }: Props) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 32,
+  },
   title: {
     marginBottom: 16,
   },

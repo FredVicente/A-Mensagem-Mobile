@@ -3,7 +3,7 @@
     "name": "a-mensagem-mobile",
     "slug": "a-mensagem-mobile",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "amensagemmobile",
     "userInterfaceStyle": "automatic",
