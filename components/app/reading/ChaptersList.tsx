@@ -1,43 +1,33 @@
-import ScreenView from "@/components/screen-view";
-import ScrollScreenView from "@/components/scroll-screen-view";
+import { ScrollThemedView } from "@/components/scroll-themed-view";
 import { ThemedPressable } from "@/components/themed-pressable";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { AllBibleBooks } from "@/data/bible-books";
 import { useTheme } from "@/hooks/use-theme";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useLocalSearchParams, useRouter } from "expo-router";
 import { Pressable, StyleSheet } from "react-native";
 
-export default function BookScreen() {
-  const { book } = useLocalSearchParams();
-  const router = useRouter();
-  const color = useTheme("tintText");
-  const iconColor = useTheme("icon");
+type Props = {
+  book: string;
+  onChapterSelect: (chapter: number) => void;
+  onBack: () => void;
+};
 
+export function ChaptersList({ book, onChapterSelect, onBack }: Props) {
   const bookData = AllBibleBooks.find((b) => b.normalizedTitle === book);
-
-  if (!bookData) {
-    return (
-      <ScreenView>
-        <ThemedText type="title" style={styles.title}>
-          Book not found
-        </ThemedText>
-      </ScreenView>
-    );
-  }
+  if (!bookData) return <></>;
 
   const chapters = Array.from(
     { length: bookData.chaptersCount },
     (_, i) => i + 1,
   );
 
+  const iconColor = useTheme("icon");
+  const color = useTheme("tintText");
+
   return (
-    <ScrollScreenView>
-      <Pressable
-        style={styles.backButton}
-        onPress={() => router.replace("/reading")}
-      >
+    <ScrollThemedView>
+      <Pressable style={styles.backButton} onPress={onBack}>
         <MaterialIcons name="chevron-left" size={32} color={iconColor} />
       </Pressable>
       <ThemedText type="title" style={styles.title}>
@@ -47,9 +37,7 @@ export default function BookScreen() {
         {chapters.map((chapter) => (
           <ThemedPressable
             key={chapter}
-            onPress={() =>
-              router.replace(`/reading/${bookData.normalizedTitle}/${chapter}`)
-            }
+            onPress={() => onChapterSelect(chapter)}
             style={styles.button}
           >
             <ThemedText style={[styles.buttonText, { color }]}>
@@ -58,7 +46,7 @@ export default function BookScreen() {
           </ThemedPressable>
         ))}
       </ThemedView>
-    </ScrollScreenView>
+    </ScrollThemedView>
   );
 }
 
@@ -66,7 +54,7 @@ const styles = StyleSheet.create({
   backButton: {
     backgroundColor: "tranparent",
     marginBottom: 8,
-    left: -16,
+    left: -8,
   },
   title: {
     marginVertical: 16,

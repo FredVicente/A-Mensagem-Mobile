@@ -1,19 +1,18 @@
 import { AllBibleBooks } from "@/data/bible-books";
 import { useTheme } from "@/hooks/use-theme";
 import { getNextAndPreviousChapter } from "@/lib/utils";
-import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 import { ThemedPressable } from "../themed-pressable";
 import { ThemedText } from "../themed-text";
 import { ThemedView } from "../themed-view";
 
-type VerseChangerProps = {
+type Props = {
   book: string;
-  chapter: string;
+  chapter: number;
+  onNavigate: (book: string | null, chapter: number | null) => void;
 };
 
-export function VerseChanger({ book, chapter }: VerseChangerProps) {
-  const router = useRouter();
+export function VerseChanger({ book, chapter, onNavigate }: Props) {
   const bookData = AllBibleBooks.find((b) => b.normalizedTitle === book);
   const { previous, next } = getNextAndPreviousChapter(book, Number(chapter));
 
@@ -37,9 +36,7 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
             backgroundColor: background,
           },
         ]}
-        onPress={() =>
-          router.replace(`/reading/${previous.book}/${previous.chapter}`)
-        }
+        onPress={() => onNavigate(previous.book, previous.chapter)}
       >
         <ThemedText style={{ color }}>{"<"}</ThemedText>
       </ThemedPressable>
@@ -50,7 +47,7 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
             backgroundColor: background,
           },
         ]}
-        onPress={() => router.replace(`/reading`)}
+        onPress={() => onNavigate(null, null)}
       >
         <ThemedText style={{ color }}>
           {bookData?.title} {chapter}
@@ -63,7 +60,7 @@ export function VerseChanger({ book, chapter }: VerseChangerProps) {
             backgroundColor: background,
           },
         ]}
-        onPress={() => router.replace(`/reading/${next.book}/${next.chapter}`)}
+        onPress={() => onNavigate(next.book, next.chapter)}
       >
         <ThemedText style={{ color }}>{">"}</ThemedText>
       </ThemedPressable>
