@@ -1,6 +1,7 @@
 import { ReadingFlow } from "@/components/app/reading/ReadingFlow";
 import { ReadingHeader } from "@/components/app/reading/ReadingHeader";
 import ScreenView from "@/components/screen-view";
+import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { useLastViewedChapter } from "@/hooks/use-last-viewed-chapter";
 import { useTheme } from "@/hooks/use-theme";
@@ -18,19 +19,22 @@ export default function ReadingScreen() {
     lastViewedSecondaryChapter,
     savePrimaryChapter,
     saveSecondaryChapter,
+    loaded,
   } = useLastViewedChapter();
 
   const dividerColor = useTheme("tint");
 
+  if (!loaded) return <ThemedText>Loading...</ThemedText>;
+
   return (
-    <ScreenView>
+    <ScreenView style={styles.container}>
       {isLandscape && (
         <ReadingHeader
           parallelMode={parallelMode}
           setParallelMode={setParallelMode}
         />
       )}
-      <ThemedView style={styles.container}>
+      <ThemedView style={styles.flows}>
         <ReadingFlow
           initialBook={lastViewedPrimaryChapter?.book}
           initialChapter={lastViewedPrimaryChapter?.chapter}
@@ -58,6 +62,9 @@ export default function ReadingScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 24,
+  },
+  flows: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

@@ -24,7 +24,7 @@ export default function SettingsScreen() {
   const iconColor = useTheme("icon");
 
   return (
-    <ScreenView>
+    <ScreenView style={styles.screen}>
       <ThemedText type="title" style={styles.title}>
         Configurações
       </ThemedText>
@@ -82,6 +82,9 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    paddingHorizontal: 24,
+  },
   title: {
     marginBottom: 16,
   },

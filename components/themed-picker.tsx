@@ -5,16 +5,12 @@ export type ThemedPickerProps<T> = Omit<
   PickerProps<T>,
   "onValueChange" | "selectedValue"
 > & {
-  lightColor?: string;
-  darkColor?: string;
   selectedValue?: T;
   onValueChange?: (value: T, index: number) => void;
 };
 
 export function ThemedPicker<T>({
   style,
-  lightColor,
-  darkColor,
   onValueChange,
   ...otherProps
 }: ThemedPickerProps<T>) {

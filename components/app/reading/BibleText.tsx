@@ -2,7 +2,8 @@ import { ScrollThemedView } from "@/components/scroll-themed-view";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { BibleData } from "@/data/index";
-import { StyleSheet } from "react-native";
+import { useEffect, useRef } from "react";
+import { ScrollView, StyleSheet } from "react-native";
 import { Verse } from "../Verse";
 import { VerseChanger } from "../VerseChanger";
 
@@ -15,9 +16,18 @@ type Props = {
 export default function BibleText({ book, chapter, onNavigate }: Props) {
   const text = BibleData[book][chapter];
 
+  const scrollRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({
+      y: 0,
+      animated: false,
+    });
+  }, [chapter]);
+
   return (
     <ThemedView style={styles.container}>
-      <ScrollThemedView style={styles.textContainer}>
+      <ScrollThemedView style={styles.textContainer} ref={scrollRef}>
         <ThemedText type="title" style={styles.title}>
           Capítulo {chapter}
         </ThemedText>
@@ -36,14 +46,13 @@ export default function BibleText({ book, chapter, onNavigate }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 32,
+    paddingVertical: 32,
   },
   title: {
     marginBottom: 16,
   },
   textContainer: {
     gap: 8,
-    padding: 6,
-    paddingBottom: 32,
+    paddingBottom: 64,
   },
 });

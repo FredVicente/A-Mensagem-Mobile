@@ -1,15 +1,16 @@
 import { ThemedView } from "@/components/themed-view";
 import type { PropsWithChildren } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, ViewProps } from "react-native";
 
-export default function ScreenView({ children }: PropsWithChildren) {
-  return <ThemedView style={styles.container}>{children}</ThemedView>;
+type ScreenViewProps = PropsWithChildren & ViewProps;
+
+export default function ScreenView({ children, style }: ScreenViewProps) {
+  return <ThemedView style={[styles.container, style]}>{children}</ThemedView>;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
     paddingTop: 64,
     gap: 8,
     minHeight: "100%",

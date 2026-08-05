@@ -1,19 +1,19 @@
+import { useTheme } from "@/hooks/use-theme";
+import { forwardRef } from "react";
 import { ScrollView, type ScrollViewProps } from "react-native";
 
-import { useTheme } from "@/hooks/use-theme";
+export const ScrollThemedView = forwardRef<ScrollView, ScrollViewProps>(
+  ({ style, ...otherProps }, ref) => {
+    const backgroundColor = useTheme("background");
 
-export type ScrollThemedViewProps = ScrollViewProps & {
-  lightColor?: string;
-  darkColor?: string;
-};
+    return (
+      <ScrollView
+        ref={ref}
+        style={[{ backgroundColor }, style]}
+        {...otherProps}
+      />
+    );
+  },
+);
 
-export function ScrollThemedView({
-  style,
-  lightColor,
-  darkColor,
-  ...otherProps
-}: ScrollThemedViewProps) {
-  const backgroundColor = useTheme("background");
-
-  return <ScrollView style={[{ backgroundColor }, style]} {...otherProps} />;
-}
+ScrollThemedView.displayName = "ScrollThemedView";
