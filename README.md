@@ -1,50 +1,61 @@
-# Welcome to your Expo app 👋
+# A Mensagem Mobile 📖
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo móvel desenvolvido em **React Native** para leitura da Bíblia na versão _A Mensagem_, focado em uma experiência de leitura simples, personalizável e fluida.
 
-## Get started
+Este projeto foi construído para fins de estudo e aprendizado, utilizando a base de dados do projeto open-source [biblia-a-mensagem](https://github.com/kevinkirsten/biblia-a-mensagem), cuja versão web pode ser acessada em [biblia-a-mensagem.com](https://biblia-a-mensagem.com/).
 
-1. Install dependencies
+## ✨ Funcionalidades
 
-   ```bash
-   npm install
-   ```
+- **Leitura Completa:** Acesso a todos os livros e capítulos da versão _A Mensagem_.
+- **Leitura Paralela:** Ao girar o celular para o modo horizontal (landscape), a tela se divide para permitir a leitura e comparação de dois textos simultaneamente.
+- **Múltiplos Temas:** Variedade de esquemas de cores para leitura confortável em qualquer ambiente (Claro, Escuro, Rosa, Azul, Verde, Azul Dark, Verde Dark, etc.).
 
-2. Start the app
+## 🛠️ Tecnologias
 
-   ```bash
-   npx expo start
-   ```
+- [React Native](https://reactnative.dev/)
+- JavaScript / TypeScript
 
-In the output, you'll find options to open the app in a
+## 🚀 Como Executar
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### 1. Clone o repositório
 
 ```bash
-npm run reset-project
+git clone https://github.com/SEU-USUARIO/a-mensagem-mobile.git
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Instale as dependências
 
-## Learn more
+```bash
+cd a-mensagem-mobile
 
-To learn more about developing your project with Expo, look at the following resources:
+npm install
+# ou
+yarn
+# ou
+pnpm install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 3. Inicie o projeto
 
-## Join the community
+Para Android:
 
-Join our community of developers creating universal apps.
+```bash
+npx react-native run-android
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Para iOS:
+
+```bash
+npx react-native run-ios
+```
+
+> **Nota:** Caso esteja utilizando o Expo, você pode iniciar o projeto com:
+
+```bash
+npx expo start
+```
+
+## 🙏 Agradecimentos e Créditos
+
+- **Base de dados e versão web original:** [biblia-a-mensagem](https://github.com/kevinkirsten/biblia-a-mensagem), por [Kevin Kirsten](https://github.com/kevinkirsten).
+- **Tradução:** Bíblia _A Mensagem_ (_The Message_), de Eugene H. Peterson.
