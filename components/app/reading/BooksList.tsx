@@ -3,6 +3,7 @@ import { ThemedPressable } from "@/components/themed-pressable";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedTextInput } from "@/components/themed-text-input";
 import { BibleBooks } from "@/data/bible-books";
+import { useTheme } from "@/hooks/use-theme";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 
@@ -13,6 +14,8 @@ type Props = {
 export default function BooksList({ onBookSelect }: Props) {
   const [search, setSearch] = useState("");
 
+  const shadowColor = useTheme("shadow");
+
   return (
     <ScrollThemedView>
       <ThemedTextInput
@@ -21,7 +24,7 @@ export default function BooksList({ onBookSelect }: Props) {
         placeholder="Pesquisar livro"
         style={styles.input}
       />
-      <ThemedText type="title" style={styles.title}>
+      <ThemedText type="tint" style={styles.title}>
         Antigo Testamento
       </ThemedText>
       {BibleBooks.oldTestament
@@ -32,17 +35,18 @@ export default function BooksList({ onBookSelect }: Props) {
           <ThemedPressable
             key={book.normalizedTitle}
             onPress={() => onBookSelect(book.normalizedTitle)}
-            style={styles.button}
+            style={[styles.button, { borderBottomColor: shadowColor }]}
           >
             <ThemedText style={styles.buttonText}>{book.title}</ThemedText>
           </ThemedPressable>
         ))}
+
       <ThemedText
-        type="title"
+        type="tint"
         style={[
           styles.title,
           {
-            marginTop: 16,
+            marginTop: 32,
           },
         ]}
       >
@@ -56,7 +60,7 @@ export default function BooksList({ onBookSelect }: Props) {
           <ThemedPressable
             key={book.normalizedTitle}
             onPress={() => onBookSelect(book.normalizedTitle)}
-            style={styles.button}
+            style={[styles.button, { borderBottomColor: shadowColor }]}
           >
             <ThemedText style={styles.buttonText}>{book.title}</ThemedText>
           </ThemedPressable>
@@ -67,14 +71,16 @@ export default function BooksList({ onBookSelect }: Props) {
 
 const styles = StyleSheet.create({
   input: {
-    marginBottom: 12,
+    marginBottom: 24,
   },
   title: {
     marginBottom: 12,
   },
   button: {
     backgroundColor: "transparent",
-    paddingVertical: 8,
+    paddingTop: 16,
+    paddingBottom: 12,
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   buttonText: {
     fontSize: 18,

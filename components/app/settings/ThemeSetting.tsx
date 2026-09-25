@@ -74,7 +74,7 @@ export function ThemeSetting({ visible, onClose }: Props) {
                       <MaterialIcons
                         name="check"
                         size={14}
-                        color={currentTheme.tintText}
+                        color={currentTheme.onTint}
                       />
                     </View>
                   )}

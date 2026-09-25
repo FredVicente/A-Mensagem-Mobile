@@ -9,6 +9,7 @@ export const ScrollThemedView = forwardRef<ScrollView, ScrollViewProps>(
     return (
       <ScrollView
         ref={ref}
+        showsVerticalScrollIndicator={false}
         style={[{ backgroundColor }, style]}
         {...otherProps}
       />

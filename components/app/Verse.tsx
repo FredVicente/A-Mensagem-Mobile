@@ -1,11 +1,14 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { useFontFamily } from "@/hooks/use-font";
+import { useTheme } from "@/hooks/use-theme";
 import { type Verse } from "@/lib/types";
 import { StyleSheet } from "react-native";
 
 export function Verse({ verse }: { verse: Verse }) {
   const fontFamily = useFontFamily();
+  const fontFamilyBold = useFontFamily("bold");
+  const tint = useTheme("tint");
 
   return (
     <ThemedView>
@@ -27,7 +30,18 @@ export function Verse({ verse }: { verse: Verse }) {
             fontFamily,
           }}
         >
-          <ThemedText style={styles.number}>{verse.number}</ThemedText>{" "}
+          <ThemedText
+            style={[
+              styles.number,
+              {
+                color: tint,
+                fontFamily: fontFamilyBold,
+                fontWeight: "bold",
+              },
+            ]}
+          >
+            {verse.number}
+          </ThemedText>{" "}
           {verse.content}
         </ThemedText>
       </ThemedView>
@@ -41,8 +55,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     gap: 4,
     textAlign: "justify",
+    marginVertical: 4,
   },
   number: {
-    fontSize: 10,
+    fontSize: 12,
   },
 });

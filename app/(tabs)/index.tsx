@@ -10,7 +10,8 @@ import { StyleSheet } from "react-native";
 export default function HomeScreen() {
   const router = useRouter();
 
-  const buttonTextColor = useTheme("tintText");
+  const buttonTextColor = useTheme("onTint");
+  const tintTextColor = useTheme("tintText");
 
   const fontFamily = useFontFamily();
 
@@ -30,12 +31,10 @@ export default function HomeScreen() {
           Iluminado por tuas palavras, consigo enxergar o caminho
         </ThemedText>
         <ThemedText
-          style={[
-            styles.verseReference,
-            {
-              fontFamily,
-            },
-          ]}
+          style={{
+            color: tintTextColor,
+            fontFamily,
+          }}
         >
           Salmos 119:105
         </ThemedText>
@@ -71,6 +70,7 @@ const styles = StyleSheet.create({
     gap: 8,
     alignItems: "center",
     justifyContent: "center",
+    marginVertical: 20,
   },
   verseText: {
     textAlign: "center",
@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   button: {
-    padding: 8,
-    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 4,
   },
 });

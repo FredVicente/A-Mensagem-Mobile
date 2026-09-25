@@ -18,7 +18,7 @@ export function ThemedTextInput(props: TextInputProps) {
           color: text,
           borderColor: shadow,
           borderWidth: 1,
-          borderRadius: 12,
+          borderRadius: 6,
           paddingHorizontal: 16,
           paddingVertical: 12,
           fontFamily,

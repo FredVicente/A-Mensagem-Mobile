@@ -29,6 +29,7 @@ export function ChaptersList({ book, onChapterSelect, onBack }: Props) {
     <ScrollThemedView>
       <Pressable style={styles.backButton} onPress={onBack}>
         <MaterialIcons name="chevron-left" size={32} color={iconColor} />
+        <ThemedText type="tint">Livros</ThemedText>
       </Pressable>
       <ThemedText type="title" style={styles.title}>
         {bookData.title}
@@ -39,6 +40,7 @@ export function ChaptersList({ book, onChapterSelect, onBack }: Props) {
             key={chapter}
             onPress={() => onChapterSelect(chapter)}
             style={styles.button}
+            filled={false}
           >
             <ThemedText style={[styles.buttonText, { color }]}>
               {chapter}
@@ -52,6 +54,8 @@ export function ChaptersList({ book, onChapterSelect, onBack }: Props) {
 
 const styles = StyleSheet.create({
   backButton: {
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: "tranparent",
     marginBottom: 8,
     left: -8,
@@ -66,11 +70,11 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   button: {
-    height: 40,
-    width: 40,
+    height: 62,
+    width: 62,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 6,
+    borderRadius: 4,
   },
   buttonText: {
     fontSize: 16,
