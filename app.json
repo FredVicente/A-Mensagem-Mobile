@@ -43,6 +43,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6ef3e74b-136b-4543-a524-a77fd6bbb308"
+      }
+    },
+    "owner": "albertvicentes-team"
   }
 }
