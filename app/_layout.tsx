@@ -1,4 +1,5 @@
 import { FontProvider } from "@/contexts/FontContext";
+import { TabBarProvider } from "@/contexts/TabBarContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -28,14 +29,16 @@ export default function RootLayout() {
   return (
     <ThemeProvider>
       <FontProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="modal"
-            options={{ presentation: "modal", title: "Modal" }}
-          />
-        </Stack>
-        <StatusBar style="auto" />
+        <TabBarProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="modal"
+              options={{ presentation: "modal", title: "Modal" }}
+            />
+          </Stack>
+          <StatusBar style="auto" />
+        </TabBarProvider>
       </FontProvider>
     </ThemeProvider>
   );

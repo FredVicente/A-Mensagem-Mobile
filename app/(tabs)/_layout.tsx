@@ -1,12 +1,21 @@
-import { Tabs } from "expo-router";
-
 import { HapticTab } from "@/components/haptic-tab";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { Themes } from "@/constants/theme";
+import { useTabBar } from "@/contexts/TabBarContext";
 import { useAppTheme } from "@/contexts/ThemeContext";
+import { Tabs } from "expo-router";
+import { BottomTabBar } from "expo-router/build/react-navigation/bottom-tabs";
+import Animated, { useAnimatedStyle } from "react-native-reanimated";
 
 export default function TabLayout() {
   const { theme } = useAppTheme();
+  const { tabbarTranslateY } = useTabBar();
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: tabbarTranslateY.value }],
+    };
+  });
 
   return (
     <Tabs
@@ -17,8 +26,22 @@ export default function TabLayout() {
         tabBarButton: HapticTab,
         tabBarStyle: {
           backgroundColor: Themes[theme ?? "light"].background,
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
         },
       }}
+      tabBar={(props) => (
+        <Animated.View
+          style={[
+            animatedStyle,
+            { position: "absolute", left: 0, right: 0, bottom: 0 },
+          ]}
+        >
+          <BottomTabBar {...props} />
+        </Animated.View>
+      )}
     >
       <Tabs.Screen
         name="index"
