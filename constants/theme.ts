@@ -71,7 +71,7 @@ export const Themes = {
     mode: "light",
     hue: 205,
 
-    background: "#eaf4fb",
+    background: "hsl(205, 68%, 98%)",
     surface: "#f6fbff",
     shadow: "#cfdfe9",
 
@@ -91,7 +91,7 @@ export const Themes = {
     mode: "light",
     hue: 137,
 
-    background: "#e7efe6",
+    background: "hsl(113, 22%, 96%)",
     surface: "#f3f8f2",
     shadow: "#cad8c8",
 
@@ -111,7 +111,7 @@ export const Themes = {
     mode: "light",
     hue: 331,
 
-    background: "#fdf0fa",
+    background: "hsl(314, 77%, 98%)",
     surface: "#fff8fd",
     shadow: "#e6d7e1",
 
@@ -131,7 +131,7 @@ export const Themes = {
     mode: "light",
     hue: 265,
 
-    background: "#f3eefc",
+    background: "hsl(261, 70%, 98%)",
     surface: "#faf8ff",
     shadow: "#dcd5ea",
 
